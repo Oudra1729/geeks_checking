@@ -24,9 +24,51 @@
 
 
 #Exe 5 : Favorite Numbers
-my_fav_numbers = {7, 42, 99}
-my_fav_numbers.add(13)
-my_fav_numbers.remove(99)
-my_fav_numbers.pop()
-friend_fav_numbers = {42, 88, 13}
-our_fav_numbers = my_fav_numbers.union(friend_fav_numbers)
+# my_fav_numbers = {7, 42, 99}
+# my_fav_numbers.add(13)
+# my_fav_numbers.remove(99)
+# my_fav_numbers.pop()
+# friend_fav_numbers = {42, 88, 13}
+# our_fav_numbers = my_fav_numbers.union(friend_fav_numbers)
+
+# exercise 6
+# answer =print("yes ,Tuples are immutable lists, which means items can’t be changed.")
+
+
+
+#exercise 7
+# basket = ["Banana", "Apples", "Oranges", "Blueberries"]
+# basket.remove("Banana")
+# basket.remove("Blueberries")
+# basket.append("Kiwi")
+# basket.insert(0, "Apples")
+# basket.count("Apples")
+# basket.clear()
+# print(basket)
+
+
+# exercise 8
+# sandwich_orders = ["Tuna sandwich", "Pastrami sandwich", "Avocado sandwich", "Pastrami sandwich", "Egg sandwich", "Chicken sandwich", "Pastrami sandwich"]
+# while "Pastrami sandwich" in sandwich_orders:
+#     sandwich_orders.remove("Pastrami sandwich")
+# print(sandwich_orders)
+
+# for sandwich in sandwich_orders:
+#     print("Preparing " + sandwich + "!!!")
+#     sandwich_orders.remove(sandwich)
+#     print("Finished preparing " + sandwich + ".")
+#     print("Remaining orders: " + str(sandwich_orders))
+#     print("All sandwiches have been prepared.")
+# finished_sandwiches = []
+
+# for sandwich in sandwich_orders:
+#     print("Preparing " + sandwich + "!!!")
+#     sandwich_orders.remove(sandwich)
+#     print("Finished preparing " + sandwich + ".")
+#     print("Remaining orders: " + str(sandwich_orders))
+#     finished_sandwiches.append(sandwich)
+
+# print("All sandwiches have been prepared.")
+
+# for sandwich in finished_sandwiches:
+#     print(f"I made your {sandwich.lower()}")
