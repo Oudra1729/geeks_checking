@@ -48,27 +48,27 @@
 
 
 # exercise 8
-# sandwich_orders = ["Tuna sandwich", "Pastrami sandwich", "Avocado sandwich", "Pastrami sandwich", "Egg sandwich", "Chicken sandwich", "Pastrami sandwich"]
-# while "Pastrami sandwich" in sandwich_orders:
-#     sandwich_orders.remove("Pastrami sandwich")
-# print(sandwich_orders)
+sandwich_orders = ["Tuna sandwich", "Pastrami sandwich", "Avocado sandwich", "Pastrami sandwich", "Egg sandwich", "Chicken sandwich", "Pastrami sandwich"]
+while "Pastrami sandwich" in sandwich_orders:
+    sandwich_orders.remove("Pastrami sandwich")
+print(sandwich_orders)
 
-# for sandwich in sandwich_orders:
-#     print("Preparing " + sandwich + "!!!")
-#     sandwich_orders.remove(sandwich)
-#     print("Finished preparing " + sandwich + ".")
-#     print("Remaining orders: " + str(sandwich_orders))
-#     print("All sandwiches have been prepared.")
-# finished_sandwiches = []
+for sandwich in sandwich_orders:
+    print("Preparing " + sandwich + "!!!")
+    sandwich_orders.remove(sandwich)
+    print("Finished preparing " + sandwich + ".")
+    print("Remaining orders: " + str(sandwich_orders))
+    print("All sandwiches have been prepared.")
+finished_sandwiches = []
 
-# for sandwich in sandwich_orders:
-#     print("Preparing " + sandwich + "!!!")
-#     sandwich_orders.remove(sandwich)
-#     print("Finished preparing " + sandwich + ".")
-#     print("Remaining orders: " + str(sandwich_orders))
-#     finished_sandwiches.append(sandwich)
+for sandwich in sandwich_orders:
+    print("Preparing " + sandwich + "!!!")
+    sandwich_orders.remove(sandwich)
+    print("Finished preparing " + sandwich + ".")
+    print("Remaining orders: " + str(sandwich_orders))
+    finished_sandwiches.append(sandwich)
 
-# print("All sandwiches have been prepared.")
+print("All sandwiches have been prepared.")
 
-# for sandwich in finished_sandwiches:
-#     print(f"I made your {sandwich.lower()}")
+for sandwich in finished_sandwiches:
+    print(f"I made your {sandwich.lower()}")
