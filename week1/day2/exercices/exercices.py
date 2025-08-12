@@ -118,5 +118,97 @@ import random
 # else:
 #     print("Fail! The numbers do not match.")
 
+#ex6:
+# def make_shirt(size, text):
+#     print(f"The size of the shirt is {size} and the text is {text}")
+# make_shirt("M", "We hope you enjoy your shirt!")
+# def make_shirt(size="L", text="I love Python"):
+#     print(f"The size of the shirt is {size} and the text is {text}")
+# make_shirt()
+# make_shirt("M")
+# make_shirt("S", "Python is good!")
+# make_shirt(text="Python is good!", size="S")
 
 
+#ex 7:
+# def get_random_temp(season):
+    
+#     if season == "spring":
+#         return random.randint (15,25) 
+#     elif season == "summer":
+#         return random.randint (25,40) 
+#     elif season == "autumn":
+#         return random.randint (10,20) 
+#     elif season == "winter":
+#         return random.randint (-5, 15) 
+#     else:
+#         return random.randint (-10, 40) 
+    
+# def main():
+#     season = input("Type season :" )
+
+#     temp = get_random_temp(season)
+#     print(f'The temperature right now is {temp} degrees Celsius.')
+
+#     if temp < 0:
+#         print("Brrr, that’s freezing! Wear some extra layers today")
+#     elif 0 <= temp <=16:
+#         print("Quite chilly! Don’t forget your coat")
+#     elif 16 < temp <=23:
+#         print("Fine day")
+#     elif 24 <= temp <=32:
+#         print("Nice day")
+#     else:
+#         print("the weather is hot")
+
+# main()
+
+
+# ex8:
+
+# data = [
+#     {
+#         "question": "What is Baby Yoda's real name?",
+#         "answer": "Grogu"
+#     },
+#     {
+#         "question": "Where did Obi-Wan take Luke after his birth?",
+#         "answer": "Tatooine"
+#     },
+#     {
+#         "question": "What year did the first Star Wars movie come out?",
+#         "answer": "1977"
+#     },
+#     {
+#         "question": "Who built C-3PO?",
+#         "answer": "Anakin Skywalker"
+#     },
+#     {
+#         "question": "Anakin Skywalker grew up to be who?",
+#         "answer": "Darth Vader"
+#     },
+#     {
+#         "question": "What species is Chewbacca?",
+#         "answer": "Wookiee"
+#     }
+# ]
+    
+# def quiz():
+#     correct = 0
+#     incorrect = 0
+#     wrong = []
+#     for item in data:
+#         answer = input(item["question" ]).strip()
+        
+#         if answer.lower() == item["answer"].lower():
+#             correct += 1
+#         else:
+#             incorrect += 1
+#             wrong.append(item["question"])
+#     return correct, incorrect, wrong
+# def affichage(correct, incorrect, wrong):
+#     print(f'correct ancwers are : {correct}')
+#     print(f'incorrect ancwers are : {incorrect}')
+#     print(f'wrong questions are : {wrong}')
+# correct, incorrect, wrong = quiz()
+# affichage(correct, incorrect, wrong)
