@@ -24,7 +24,7 @@ print(f"The oldest cat is {find_oldest_cat(cats).name}, and is {find_oldest_cat(
 class dog():
     def __init__(self,nome,height):
         self.NAME = nome
-        self.HEIGHT = height
+        self.HEIGHT = height*2
     def bark(self):
         print(f"{self.NAME} Woof!")
     def jump(self):
