@@ -131,37 +131,37 @@ import random
 
 
 #ex 7:
-# def get_random_temp(season):
+def get_random_temp(season):
     
-#     if season == "spring":
-#         return random.randint (15,25) 
-#     elif season == "summer":
-#         return random.randint (25,40) 
-#     elif season == "autumn":
-#         return random.randint (10,20) 
-#     elif season == "winter":
-#         return random.randint (-5, 15) 
-#     else:
-#         return random.randint (-10, 40) 
+    if season == "spring":
+        return random.randint (15,25) 
+    elif season == "summer":
+        return random.randint (25,40) 
+    elif season == "autumn":
+        return random.randint (10,20) 
+    elif season == "winter":
+        return random.randint (-5, 15) 
+    else:
+        return random.randint (-10, 40) 
     
-# def main():
-#     season = input("Type season :" )
+def main():
+    season = input("Type season :" )
 
-#     temp = get_random_temp(season)
-#     print(f'The temperature right now is {temp} degrees Celsius.')
+    temp = get_random_temp(season)
+    print(f'The temperature right now is {temp} degrees Celsius.')
 
-#     if temp < 0:
-#         print("Brrr, that’s freezing! Wear some extra layers today")
-#     elif 0 <= temp <=16:
-#         print("Quite chilly! Don’t forget your coat")
-#     elif 16 < temp <=23:
-#         print("Fine day")
-#     elif 24 <= temp <=32:
-#         print("Nice day")
-#     else:
-#         print("the weather is hot")
+    if temp < 0:
+        print("Brrr, that’s freezing! Wear some extra layers today")
+    elif 0 <= temp <=16:
+        print("Quite chilly! Don’t forget your coat")
+    elif 16 < temp <=23:
+        print("Fine day")
+    elif 24 <= temp <=32:
+        print("Nice day")
+    else:
+        print("the weather is hot")
 
-# main()
+main()
 
 
 # ex8:
