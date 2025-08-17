@@ -21,7 +21,18 @@ def print_results(results):
     print("Thanks for playing!")
 
 def main():
-    pass
+    results = {"win": 0, "loss": 0, "draw": 0}
+    while True:
+        choice = get_user_menu_choice()
+        if choice == "g":
+            game = Game()
+            result = game.play()
+            results[result] += 1
+        elif choice == "s":
+            print_results(results)
+        elif choice == "q":
+            print_results(results)
+            break
 
 if __name__ == "__main__":
     main()
