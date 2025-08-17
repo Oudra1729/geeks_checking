@@ -12,7 +12,7 @@ class Game:
                 print(" Invalid choice, try again...")
 
     def get_computer_item(self):
-        pass
+        return random.choice(["rock", "paper", "scissors"])
 
     def get_game_result(self, user_item, computer_item):
         pass
