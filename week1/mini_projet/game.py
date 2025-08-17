@@ -23,6 +23,16 @@ class Game:
             return "win"
         else:
             return "loss"
-
     def play(self):
-        pass
+        user_item = self.get_user_item()
+        computer_item = self.get_computer_item()
+        result = self.get_game_result(user_item, computer_item)
+
+        if result == "win":
+            print(f"You selected {user_item}. The computer selected {computer_item}.  You win!")
+        elif result == "loss":
+            print(f"You selected {user_item}. The computer selected {computer_item}.  You lose!")
+        else:
+            print(f"You selected {user_item}. The computer selected {computer_item}.  It's a draw!")
+
+        return result
