@@ -84,3 +84,106 @@ print(f"{dog3.name} run speed: {dog3.run_speed()}")
 print(dog2.fight(dog3))
 
 """
+"""
+
+import random
+from dog import Dog  
+
+class PetDog(Dog):
+    def __init__(self, name, age, weight):
+        super().__init__(name, age, weight)
+        self.trained = False   
+
+    def train(self):
+        print(self.bark())
+        self.trained = True
+
+    def play(self, *dog_names):
+        names = ", ".join(dog_names)
+        print(f"{names} all play together")
+
+    def do_a_trick(self):
+        if self.trained:
+            tricks = [
+                f"{self.name} does a barrel roll",
+                f"{self.name} stands on his back legs",
+                f"{self.name} shakes your hand",
+                f"{self.name} plays dead"
+            ]
+            print(random.choice(tricks))
+        else:
+            print(f"{self.name} is not trained yet!")
+
+"""
+
+"""
+#ex4
+class Family:
+    def __init__(self, last_name, members=None):
+        self.last_name = last_name
+        self.members = members if members else []
+
+    def born(self, **kwargs):
+        self.members.append(kwargs)
+        print(f"Congratulations to the {self.last_name} family for the new child {kwargs['name']}!")
+
+    def is_18(self, name):
+        for member in self.members:
+            if member["name"] == name:
+                return member["age"] >= 18
+        return False
+
+    def family_presentation(self):
+        print(f"Family {self.last_name}:")
+        for member in self.members:
+            print(member)
+
+
+
+my_family = Family("Smith", [
+    {'name':'Michael','age':35,'gender':'Male','is_child':False},
+    {'name':'Sarah','age':32,'gender':'Female','is_child':False}
+])
+
+my_family.family_presentation()
+print(my_family.is_18("Michael"))  
+my_family.born(name="Tom", age=1, gender="Male", is_child=True)
+my_family.family_presentation()
+
+"""
+"""
+
+#ex5
+class TheIncredibles(Family):
+    def use_power(self, name):
+        for member in self.members:
+            if member["name"] == name:
+                if member["age"] >= 18:
+                    print(f"{member['name']}'s power is: {member['power']}")
+                else:
+                    raise Exception(f"{member['name']} is not over 18 years old!")
+
+    def incredible_presentation(self):
+        print("\n* Here is our powerful family *")
+        super().family_presentation()
+
+
+# Example of usage
+incredibles = TheIncredibles("Incredibles", [
+    {'name':'Michael','age':35,'gender':'Male','is_child':False,'power': 'fly','incredible_name':'MikeFly'},
+    {'name':'Sarah','age':32,'gender':'Female','is_child':False,'power': 'read minds','incredible_name':'SuperWoman'}
+])
+
+incredibles.incredible_presentation()
+incredibles.use_power("Michael")
+
+# add baby Jack
+incredibles.born(name="Jack", age=1, gender="Male", is_child=True, power="Unknown Power", incredible_name="BabyJack")
+
+incredibles.incredible_presentation()
+
+"""
+
+
+
+
