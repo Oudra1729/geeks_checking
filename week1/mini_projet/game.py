@@ -6,7 +6,7 @@ class Game:
         choices = ["rock", "paper", "scissors"]
         while True:
             user_choice = input("Select (rock/paper/scissors): ").lower()
-            if user_choice in random.choices:
+            if user_choice in choices:
                 return user_choice
             else:
                 print(" Invalid choice, try again...")
