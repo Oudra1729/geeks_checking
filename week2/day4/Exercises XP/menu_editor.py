@@ -9,7 +9,6 @@ def show_user_menu():
         print("A - Add an Item")
         print("D - Delete an Item")
         print("U - Update an Item")
-        print("S - Show the Menu")
         print("X - Exit")
         choice = input("Please choose an option: ").upper()
 
