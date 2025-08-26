@@ -41,3 +41,36 @@ def add_item_to_menu():
         print(f"✅ {name} was added successfully.")
     except Exception as e:
         print(f"Error adding item: {e}")
+
+def view_item():
+    name = input("Enter the item name to view: ")
+    item = MenuManager.get_by_name(name)
+    if item:
+        print(f"Item: {item.name}, Price: {item.price}")
+    else:
+        print("Item not found.")
+
+def remove_item_from_menu():
+    name = input("Enter the item name to remove: ")
+    item = MenuItem(name, 0)
+    if item.delete():
+        print(f"✅ {name} was removed successfully.")
+    else:
+        print("Item not found or could not be removed.")
+
+def update_item_from_menu():
+    name = input("Enter the item name to update: ")
+    price = input("Enter the new price: ")
+    item = MenuItem(name, float(price))
+    if item.update():
+        print(f"✅ {name} was updated successfully.")
+    else:
+        print("Item not found or could not be updated.")
+
+def show_restaurant_menu():
+    menu = MenuManager.all()
+    print("\n--- Restaurant Menu ---")
+    for item in menu:
+        print(f"{item.name}: ${item.price}")
+    if not menu:
+        print("Menu is empty.")
