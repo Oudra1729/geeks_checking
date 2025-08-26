@@ -37,7 +37,7 @@ def add_item_to_menu():
     try:
         item = MenuItem(name, float(price))
         item.save()
-        print(f"✅ {name} was added successfully.")
+        print(f"{name} was added successfully.")
     except Exception as e:
         print(f"Error adding item: {e}")
 
@@ -53,7 +53,7 @@ def remove_item_from_menu():
     name = input("Enter the item name to remove: ")
     item = MenuItem(name, 0)
     if item.delete():
-        print(f"✅ {name} was removed successfully.")
+        print(f"{name} was removed successfully.")
     else:
         print("Item not found or could not be removed.")
 
@@ -62,7 +62,7 @@ def update_item_from_menu():
     price = input("Enter the new price: ")
     item = MenuItem(name, float(price))
     if item.update():
-        print(f"✅ {name} was updated successfully.")
+        print(f"{name} was updated successfully.")
     else:
         print("Item not found or could not be updated.")
 
