@@ -28,4 +28,16 @@ def show_user_menu():
             show_restaurant_menu()
             break
         else:
-            print("❌ Invalid choice, try again.")
+            print("Invalid choice, try again.")
+
+
+def add_item_to_menu():
+    name = input("Enter the item name: ")
+    price = input("Enter the item price: ")
+
+    try:
+        item = MenuItem(name, float(price))
+        item.save()
+        print(f"✅ {name} was added successfully.")
+    except Exception as e:
+        print(f"Error adding item: {e}")
