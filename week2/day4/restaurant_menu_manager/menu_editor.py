@@ -3,7 +3,7 @@ from menu_manager import MenuManager
 
 def show_user_menu():
     while True:
-        print("\n📋 MENU MANAGER")
+        print("\nMENU MANAGER")
         print("(V) View an Item")
         print("(A) Add an Item")
         print("(D) Delete an Item")
@@ -16,7 +16,7 @@ def show_user_menu():
         if choice == "V":
             name = input("Enter item name: ")
             item = MenuManager.get_by_name(name)
-            print("✅ Found:", item if item else "❌ Not found.")
+            print("Found:", item if item else "Not found.")
 
         elif choice == "A":
             name = input("Enter item name: ")
@@ -35,15 +35,15 @@ def show_user_menu():
             MenuItem(name, price).update(new_name, new_price)
 
         elif choice == "S":
-            print("\n📌 Restaurant Menu:")
+            print("\nRestaurant Menu:")
             for i in MenuManager.all_items():
                 print(f"{i[0]} - {i[1]} : {i[2]} MAD")
 
         elif choice == "E":
-            print("\n👋 Exiting... Final Menu:")
+            print("\nExiting... Final Menu:")
             for i in MenuManager.all_items():
                 print(f"{i[0]} - {i[1]} : {i[2]} MAD")
             break
 
         else:
-            print("❌ Invalid option, try again.")
+            print("Invalid option, try again.")

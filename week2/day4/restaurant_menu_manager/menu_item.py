@@ -26,16 +26,16 @@ class MenuItem:
         conn.commit()
         cur.close()
         conn.close()
-        print(f"✅ {self.name} added successfully!")
+        print(f"{self.name} added successfully!")
 
     def delete(self):
         conn = get_connection()
         cur = conn.cursor()
         cur.execute("DELETE FROM menu_items WHERE item_name = %s", (self.name,))
         if cur.rowcount > 0:
-            print(f"🗑️ {self.name} deleted successfully!")
+            print(f"{self.name} deleted successfully!")
         else:
-            print("❌ Item not found")
+            print("Item not found")
         conn.commit()
         cur.close()
         conn.close()
@@ -46,9 +46,9 @@ class MenuItem:
         cur.execute("UPDATE menu_items SET item_name=%s, item_price=%s WHERE item_name=%s",
                     (new_name, new_price, self.name))
         if cur.rowcount > 0:
-            print(f"✏️ Updated {self.name} → {new_name} ({new_price} MAD)")
+            print(f"Updated {self.name} → {new_name} ({new_price} MAD)")
         else:
-            print("❌ Item not found")
+            print("Item not found")
         conn.commit()
         cur.close()
         conn.close()
