@@ -8,6 +8,12 @@ load_dotenv()
 app = Flask(__name__)
 
 def get_db_connection():
+    try:
+        conn = psycopg2.connect(os.getenv("DATABASE_URL"))
+        print("Database connection established.")
+    except psycopg2.Error as e:
+        print(f"Error connecting to database: {e}")
+        return None
     return psycopg2.connect(os.getenv("DATABASE_URL"))
 
 # ---------------- Routes ---------------- #
