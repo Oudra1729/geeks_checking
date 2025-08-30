@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<a class="text-sm underline" href="{{ url_for('events.list_events') }}">&larr; Back</a>
+<h1 class="text-2xl font-bold mb-2">{{ event[1] }}</h1>
+<div class="text-gray-700">{{ event[2] }} — {{ event[3] }}</div>
+<p class="mt-2">{{ event[4] }}</p>
+<p class="mt-1 text-sm">Organizer: {{ event[5] }}</p>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">Attendees</h2>
+<ul class="space-y-2">
+  {% for a in attendees %}
+  <li class="border rounded p-2 flex justify-between items-center">
+    <span>{{ a[1] }} ({{ a[2] }})</span>
+  </li>
+  {% else %}
+  <li class="text-gray-500">No attendees yet.</li>
+  {% endfor %}
+</ul>
+
+{% if current_user.is_authenticated %}
+  <a href="{{ url_for('tickets.register_ticket') }}" class="inline-block mt-4 bg-green-600 text-white px-3 py-2 rounded">+ Register attendee</a>
+  <a href="{{ url_for('events.edit_event', event_id=event[0]) }}" class="inline-block mt-4 ml-2 border px-3 py-2 rounded">Edit event</a>
+  <form class="inline-block mt-4 ml-2" method="POST" action="{{ url_for('events.delete_event', event_id=event[0]) }}" onsubmit="return confirm('Delete this event?')">
+    <button class="bg-red-600 text-white px-3 py-2 rounded">Delete</button>
+  </form>
+{% endif %}
+{% endblock %}

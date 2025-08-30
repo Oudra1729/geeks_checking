@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Register attendee to event</h1>
+<form method="POST" class="space-y-3 max-w-xl">
+  <div>
+    <label class="block text-sm">Event</label>
+    <select name="event_id" class="w-full border rounded p-2" required>
+      {% for e in events %}<option value="{{ e[0] }}">{{ e[1] }}</option>{% endfor %}
+    </select>
+  </div>
+  <div>
+    <label class="block text-sm">Attendee</label>
+    <select name="attendee_id" class="w-full border rounded p-2" required>
+      {% for a in attendees %}<option value="{{ a[0] }}">{{ a[1] }}</option>{% endfor %}
+    </select>
+  </div>
+  <button class="bg-green-600 text-white px-4 py-2 rounded">Register</button>
+</form>
+{% endblock %}

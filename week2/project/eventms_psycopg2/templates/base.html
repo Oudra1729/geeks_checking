@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or 'EventMS' }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50">
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="{{ url_for('events.list_events') }}" class="font-bold text-lg">EventMS</a>
+      <div class="space-x-4">
+        <a href="{{ url_for('events.list_events') }}" class="text-gray-700 hover:text-black">Events</a>
+        <a href="{{ url_for('organizers.list_organizers') }}" class="text-gray-700 hover:text-black">Organizers</a>
+        <a href="{{ url_for('attendees.list_attendees') }}" class="text-gray-700 hover:text-black">Attendees</a>
+        <a href="{{ url_for('stats') }}" class="text-gray-700 hover:text-black">Dashboard</a>
+        {% if current_user.is_authenticated %}
+          <span class="text-gray-500">Hi, {{ current_user.username }}</span>
+          <a href="{{ url_for('auth.logout') }}" class="text-red-600">Logout</a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="text-blue-600">Login</a>
+          <a href="{{ url_for('auth.register') }}" class="text-blue-600">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 py-6">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="space-y-2 mb-4">
+          {% for category, message in messages %}
+            <div class="p-3 rounded border {% if category=='success' %}bg-green-50 border-green-300{% else %}bg-red-50 border-red-300{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
