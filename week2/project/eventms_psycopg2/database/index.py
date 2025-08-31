@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://neondb_owner:npg_ZTUNa4k1QbEn@ep-icy-fog-adkvryxg-pooler.c-2.us-east-1.aws.neon.tech/eventms?sslmode=require&channel_binding=require")
+DATABASE_URL = os.getenv("DATABASE_URL", "")
 
 _conn_pool = None
 
