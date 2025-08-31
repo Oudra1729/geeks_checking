@@ -45,6 +45,7 @@ def create_app():
 
     @app.route('/stats')
     def stats():
+        
         return render_template('stats.html', title='Dashboard')
 
     # ------------------ Optional: Test API ------------------

@@ -1,7 +1,17 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, render_template
 from database.index import get_conn, put_conn
 
 stats_bp = Blueprint('events_stats', __name__)
+
+
+
+
+
+# web jinja templates
+
+@stats_bp.route('/stats')
+def stats_index():
+    return render_template('stats.html')
 
 @stats_bp.route('/stats/api/events-per-organizer')
 def events_per_organizer():

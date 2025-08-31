@@ -16,20 +16,32 @@
     <canvas id="chart3"></canvas>
   </div>
 </div>
-
 <script>
 async function fetchJSON(url) {
   const res = await fetch(url);
   return await res.json();
 }
 (async () => {
-  const d1 = await fetchJSON('{{ url_for("events_stats.events_per_organizer") if "events_stats" in globals() else "/stats/api/events-per-organizer" }}');
-  const d2 = await fetchJSON('{{ url_for("events_stats.events_popularity") if "events_stats" in globals() else "/stats/api/events-popularity" }}');
-  const d3 = await fetchJSON('{{ url_for("events_stats.attendees_over_time") if "events_stats" in globals() else "/stats/api/attendees-over-time" }}');
+  const d1 = await fetchJSON('{{ url_for("events_stats.events_per_organizer") }}');
+  const d2 = await fetchJSON('{{ url_for("events_stats.events_popularity") }}');
+  const d3 = await fetchJSON('{{ url_for("events_stats.attendees_over_time") }}');
 
-  new Chart(document.getElementById('chart1'), {type:'bar', data:{labels:d1.labels, datasets:[{label:'Events', data:d1.data}]}});
-  new Chart(document.getElementById('chart2'), {type:'bar', data:{labels:d2.labels, datasets:[{label:'Attendees', data:d2.data}]}});
-  new Chart(document.getElementById('chart3'), {type:'line', data:{labels:d3.labels, datasets:[{label:'Attendees', data:d3.data}]}});
+  new Chart(document.getElementById('chart1'), {
+    type:'bar', 
+    data:{labels:d1.labels, datasets:[{label:'Events', data:d1.data}]}
+  });
+
+  new Chart(document.getElementById('chart2'), {
+    type:'bar', 
+    data:{labels:d2.labels, datasets:[{label:'Attendees', data:d2.data}]}
+  });
+
+  new Chart(document.getElementById('chart3'), {
+    type:'line', 
+    data:{labels:d3.labels, datasets:[{label:'Attendees', data:d3.data}]}
+  });
 })();
 </script>
+
+
 {% endblock %}
