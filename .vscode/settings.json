@@ -8,6 +8,18 @@
             "name": "Menu",
             "database": "Restaurant_Menu",
             "username": "postgres"
+        },
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "envents",
+            "connectString": "postgresql://neondb_owner:npg_ZTUNa4k1QbEn@ep-icy-fog-adkvryxg-pooler.c-2.us-east-1.aws.neon.tech/eventms?sslmode=require&channel_binding=require"
         }
     ]
 }

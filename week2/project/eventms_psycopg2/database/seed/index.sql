@@ -121,3 +121,15 @@ INSERT INTO tickets (event_id, attendee_id) VALUES
 INSERT INTO users (username, email, password_hash) VALUES
 ('admin', 'admin@example.com', '$pbkdf2-sha256$600000$gH2Xxq2gqOk9vL3n1m6F3Q$Go8Hc9gH6qZP1Yw7x5oFDv2wMZQx9h5m3p5cYQzRkqY'), -- placeholder, will be overwritten on first run
 ('user', 'user@example.com', '$pbkdf2-sha256$600000$gH2Xxq2gqOk9vL3n1m6F3Q$Go8Hc9gH6qZP1Yw7x5oFDv2wMZQx9h5m3p5cYQzRkqY');
+
+
+CREATE TABLE api_keys (
+    id SERIAL PRIMARY KEY,
+    key_value TEXT NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+INSERT INTO api_keys (key_value) VALUES ('123456');  
+
+
+SELECT * FROM events;

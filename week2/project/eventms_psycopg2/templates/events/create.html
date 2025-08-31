@@ -1,31 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="text-2xl font-bold mb-4">Create Event</h1>
-<form method="POST" class="space-y-3 max-w-xl">
+<h1 class="text-2xl font-bold mb-6">Create Event</h1>
+
+<form method="POST" class="space-y-4 max-w-xl bg-white p-6 rounded-lg shadow-md">
   <div>
-    <label class="block text-sm">Name</label>
-    <input name="name" class="w-full border rounded p-2" required>
+    <label class="block text-sm font-medium mb-1">Name</label>
+    <input name="name" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
   </div>
+
   <div>
-    <label class="block text-sm">Date</label>
-    <input type="date" name="date" class="w-full border rounded p-2" required>
+    <label class="block text-sm font-medium mb-1">Date</label>
+    <input type="date" name="date" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
   </div>
+
   <div>
-    <label class="block text-sm">Location</label>
-    <input name="location" class="w-full border rounded p-2" required>
+    <label class="block text-sm font-medium mb-1">Location</label>
+    <input name="location" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
   </div>
+
   <div>
-    <label class="block text-sm">Description</label>
-    <textarea name="description" class="w-full border rounded p-2"></textarea>
+    <label class="block text-sm font-medium mb-1">Description</label>
+    <textarea name="description" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
   </div>
+
   <div>
-    <label class="block text-sm">Organizer</label>
-    <select name="organizer_id" class="w-full border rounded p-2" required>
+    <label class="block text-sm font-medium mb-1">Organizer</label>
+    <select name="organizer_id" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
       {% for o in organizers %}
         <option value="{{ o[0] }}">{{ o[1] }}</option>
       {% endfor %}
     </select>
   </div>
-  <button class="bg-blue-600 text-white px-4 py-2 rounded">Create</button>
+
+  <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md font-semibold shadow-md transition duration-200">
+    Create Event
+  </button>
 </form>
 {% endblock %}

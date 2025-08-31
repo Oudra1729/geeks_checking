@@ -7,32 +7,48 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gray-50">
-  <nav class="bg-white border-b border-gray-200">
+<body class="bg-gray-50 text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-white border-b border-gray-200 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="{{ url_for('events.list_events') }}" class="font-bold text-lg">EventMS</a>
-      <div class="space-x-4">
-        <a href="{{ url_for('events.list_events') }}" class="text-gray-700 hover:text-black">Events</a>
-        <a href="{{ url_for('organizers.list_organizers') }}" class="text-gray-700 hover:text-black">Organizers</a>
-        <a href="{{ url_for('attendees.list_attendees') }}" class="text-gray-700 hover:text-black">Attendees</a>
-        <a href="{{ url_for('stats') }}" class="text-gray-700 hover:text-black">Dashboard</a>
+      <!-- Logo -->
+      <a href="{{ url_for('events.list_events') }}" class="text-xl font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+        EventMS
+      </a>
+
+      <!-- Links -->
+      <div class="flex items-center gap-6 text-sm font-medium">
+        <a href="{{ url_for('events.list_events') }}" class="text-gray-600 hover:text-indigo-600 transition-colors">Events</a>
+        <a href="{{ url_for('organizers.list_organizers') }}" class="text-gray-600 hover:text-indigo-600 transition-colors">Organizers</a>
+        <a href="{{ url_for('attendees.list_attendees') }}" class="text-gray-600 hover:text-indigo-600 transition-colors">Attendees</a>
+        <a href="{{ url_for('stats') }}" class="text-gray-600 hover:text-indigo-600 transition-colors">Dashboard</a>
+        
         {% if current_user.is_authenticated %}
-          <span class="text-gray-500">Hi, {{ current_user.username }}</span>
-          <a href="{{ url_for('auth.logout') }}" class="text-red-600">Logout</a>
+          <span class="text-gray-500">Hi, <span class="font-semibold">{{ current_user.username }}</span></span>
+          <a href="{{ url_for('auth.logout') }}" class="text-red-600 hover:text-red-700 transition-colors">Logout</a>
         {% else %}
-          <a href="{{ url_for('auth.login') }}" class="text-blue-600">Login</a>
-          <a href="{{ url_for('auth.register') }}" class="text-blue-600">Register</a>
+          <a href="{{ url_for('auth.login') }}" class="text-indigo-600 hover:text-indigo-700 transition-colors">Login</a>
+          <a href="{{ url_for('auth.register') }}" class="text-indigo-600 hover:text-indigo-700 transition-colors">Register</a>
         {% endif %}
       </div>
     </div>
   </nav>
 
-  <main class="max-w-6xl mx-auto px-4 py-6">
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        <div class="space-y-2 mb-4">
+        <div class="space-y-3 mb-6">
           {% for category, message in messages %}
-            <div class="p-3 rounded border {% if category=='success' %}bg-green-50 border-green-300{% else %}bg-red-50 border-red-300{% endif %}">
+            <div class="flex items-center gap-2 p-4 rounded-lg border text-sm font-medium
+                        {% if category == 'success' %}
+                          bg-green-50 text-green-800 border-green-300
+                        {% elif category == 'error' %}
+                          bg-red-50 text-red-800 border-red-300
+                        {% else %}
+                          bg-gray-50 text-gray-700 border-gray-300
+                        {% endif %}">
               {{ message }}
             </div>
           {% endfor %}

@@ -1,7 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
-from flask_login import login_required
-from database.index import get_conn, put_conn
-from helpers import paginate_params
+from helpers import *
 
 events_bp = Blueprint('events', __name__, template_folder='../templates/events')
 
@@ -121,9 +118,131 @@ def delete_event(event_id):
     conn = get_conn(); cur = conn.cursor()
     try:
         cur.execute("DELETE FROM events WHERE id=%s", (event_id,))
-        conn.commit(); flash('Event deleted.', 'success')
+        conn.commit(); return jsonify('Event deleted.', 'success')
     except Exception as e:
-        conn.rollback(); flash('Delete failed: '+str(e), 'error')
+        conn.rollback(); return jsonify('Delete failed: '+str(e), 'error')
     finally:
         cur.close(); put_conn(conn)
     return redirect(url_for('events.list_events'))
+
+
+
+
+
+
+
+# ----------------- API routes -----------------
+@events_bp.route('/api/events', methods=['GET'])
+@api_middleware
+def api_list_events():
+    q = request.args.get('q', '').strip()
+    conn = get_conn(); cur = conn.cursor()
+    where = ""; params = []
+    if q:
+        where = "WHERE LOWER(e.name) LIKE %s"; params.append('%' + q.lower() + '%')
+    cur.execute(f"""
+        SELECT e.id, e.name, e.date, e.location, o.name AS organizer_name
+        FROM events e
+        JOIN organizers o ON e.organizer_id=o.id
+        {where}
+        ORDER BY e.date ASC
+    """, params)
+    rows = cur.fetchall(); cur.close(); put_conn(conn)
+    events = [{"id": r[0],"name": r[1],"date": r[2].isoformat() if r[2] else None,"location": r[3],"organizer_name": r[4]} for r in rows]
+    return jsonify({"events": events})
+
+
+@events_bp.route('/api/events/<int:event_id>', methods=['GET'])
+@api_middleware
+def api_get_event(event_id):
+    conn = get_conn(); cur = conn.cursor()
+    cur.execute(f"""
+        SELECT e.id, e.name, e.date, e.location, o.name AS organizer_name
+        FROM events e
+        JOIN organizers o ON e.organizer_id=o.id
+        WHERE e.id=%s
+    """, (event_id,))
+    event = cur.fetchone(); cur.close(); put_conn(conn)
+    if event:
+        return jsonify({
+            "id": event[0],
+            "name": event[1],
+            "date": event[2].isoformat() if event[2] else None,
+            "location": event[3],
+            "organizer_name": event[4]
+        })
+    return jsonify({"error": "Event not found"}), 404
+@events_bp.route('/api/events', methods=['POST'])
+@api_middleware
+def api_create_event():
+    data = request.get_json()
+    name = data.get("name")
+    date = data.get("date")
+    location = data.get("location")
+    organizer_id = data.get("organizer_id")
+    description = data.get("description", "")
+
+    if not (name and date and location and organizer_id and description):
+        return jsonify({"error": "All fields are required"}), 400
+
+    conn = get_conn()
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            "INSERT INTO events (name, date, location, description, organizer_id) VALUES (%s, %s, %s, %s, %s) RETURNING id",
+            (name, date, location, description, organizer_id)
+        )
+        event_id = cur.fetchone()[0]
+        conn.commit()
+        return jsonify({"id": event_id ,"organizer_id":organizer_id}), 201
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        put_conn(conn)
+#delete event
+@events_bp.route('/api/events/<int:event_id>', methods=['DELETE'])
+@api_middleware
+def api_delete_event(event_id):
+    conn = get_conn(); cur = conn.cursor()
+    try:
+        cur.execute("DELETE FROM events WHERE id=%s", (event_id,))
+        conn.commit()
+        return jsonify({"success": True}), 204
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        put_conn(conn)
+#update events
+@events_bp.route('/api/events/<int:event_id>', methods=['PUT'])
+@api_middleware
+def api_update_event(event_id):
+    data = request.get_json()
+    name = data.get("name")
+    date = data.get("date")
+    location = data.get("location")
+    organizer_id = data.get("organizer_id")
+    description = data.get("description", "")
+
+    if not (name and date and location and organizer_id and description):
+        return jsonify({"error": "All fields are required"}), 400
+
+    conn = get_conn()
+    cur = conn.cursor()
+    try:
+        cur.execute("""
+            UPDATE events
+            SET name=%s, date=%s, location=%s, description=%s, organizer_id=%s
+            WHERE id=%s
+        """, (name, date, location, description, organizer_id, event_id))
+        conn.commit()
+        return jsonify({"id": event_id ,"organizer_id":organizer_id}), 201
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        put_conn(conn)
