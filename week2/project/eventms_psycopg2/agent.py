@@ -5,19 +5,22 @@ from openai import OpenAI, RateLimitError, APIConnectionError, AuthenticationErr
 
 load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("GIT_API_KEY")
 if not api_key:
-    raise RuntimeError("OPENAI_API_KEY is missing from your environment/.env")
+    raise RuntimeError("GIT_API_KEY is missing from your environment/.env")
 
-client = OpenAI(api_key=api_key)
-MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")  # low-cost, current
+endpoint = "https://models.github.ai/inference"
+model = "openai/gpt-4.1"
+
+client = OpenAI(api_key=api_key, base_url=endpoint)
+
 
 SYSTEM_PROMPT = "أنت مساعد ذكي لموقع Event Management."
 
 def ask_agent(question: str) -> str:
     try:
         resp = client.chat.completions.create(
-            model=MODEL,
+            model=model,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": question},

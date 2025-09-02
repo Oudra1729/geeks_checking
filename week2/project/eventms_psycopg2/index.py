@@ -9,6 +9,9 @@ from attendees.routes import attendees_bp
 from tickets.routes import tickets_bp
 from stats_routes import stats_bp
 from middlewares import api_middleware_global  # Global API middleware
+from chat import chat_bp
+
+
 
 load_dotenv()
 
@@ -37,6 +40,7 @@ def create_app():
     app.register_blueprint(attendees_bp, url_prefix='/attendees')
     app.register_blueprint(tickets_bp, url_prefix='/tickets')
     app.register_blueprint(stats_bp)
+    app.register_blueprint(chat_bp, url_prefix='/chat')
 
     # ------------------ Routes ------------------
     @app.route('/')

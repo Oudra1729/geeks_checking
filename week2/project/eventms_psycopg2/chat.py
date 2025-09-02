@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 from agent import ask_agent
 
 chat_bp = Blueprint("chat", __name__)
-@chat_bp.route("/chat", methods=["POST"])
+@chat_bp.route("/", methods=["POST"])
 def chat():
     data = request.get_json(silent=True) or {}
     question = (data.get("message") or "").strip()
