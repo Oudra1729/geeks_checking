@@ -27,7 +27,7 @@ INSERT INTO students (first_name, last_name, birth_date)
 VALUES ('John', 'Doe', '1995-05-15');
 
 
--- 🌟 Select queries
+--  Select queries
 
 -- Fetch all of the data
 SELECT * FROM students;
