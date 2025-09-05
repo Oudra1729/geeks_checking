@@ -3,7 +3,7 @@ const cols = 60;
 const cellSize = 20;
 const colors = [
   "red","orangered","orange","yellow","yellowgreen","lightgreen","green",
-  "turquoise","cyan","lightskyblue","dodgerblue","blue","darkblue",
+  "turquoise","cyan","lightskyblue",
   "indigo","darkmagenta","violet","lightpink","lightgray","gray","black","white"
 ];
 

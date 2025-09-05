@@ -1,0 +1,57 @@
+body {
+  background: url("./5PE6UMNQ4ZGPPBZK7O5QKCZJYU.png");
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.keys {
+  display: flex;
+  gap: 20px;
+}
+
+.key {
+  border: 3px solid yellow;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  width: 80px;
+  transition: all 0.07s ease;
+  background: black;
+  cursor: pointer;
+}
+
+.key kbd {
+  display: block;
+  font-size: 24px;
+}
+
+.key span {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Animation ملي يضرب المفتاح */
+.key.playing {
+  transform: scale(1.1);
+  border-color: rgb(242, 255, 1);
+  box-shadow: 0 0 10px rgb(255, 235, 17);
+
+}
+.key:hover{
+	transform: scale(1.07);
+}
+.key:hover {
+  transform: scale(1.1);
+  border-color: rgb(242, 255, 1);
+  box-shadow: 0 0 10px rgb(255, 235, 17);
+}
+
+.playing {
+	transform: scale(1.2) !important;  /*to override the scale from hover*/
+	border: 2px solid #ffcc02;
+	box-shadow: 0px 0px 20px 5px #ffcc02;
+}
