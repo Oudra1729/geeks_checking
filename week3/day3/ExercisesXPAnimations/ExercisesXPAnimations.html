@@ -1,0 +1,123 @@
+<!-- ex1 -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>DOM Timer Exercise</title>
+    <style>
+        p {
+            background: yellow;
+            color: red;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <button id="clear">Clear Interval</button>
+
+    <script>
+        const container = document.getElementById("container");
+        const clearButton = document.getElementById("clear");
+
+        
+        // Part I – Alert after 2 seconds
+        
+        setTimeout(function() {
+            alert("Hello World");
+        }, 2000);
+
+        
+        // Part II – Add one paragraph after 2 seconds
+        
+        setTimeout(function() {
+            const p = document.createElement("p");
+            p.textContent = "Hello World";
+            container.appendChild(p);
+        }, 2000);
+
+        
+        // Part III – Add paragraph every 2 seconds
+        
+        let count = 0;
+        const intervalId = setInterval(function() {
+            const p = document.createElement("p");
+            p.textContent = "Hello World";
+            container.appendChild(p);
+            count++;
+
+            // Stop interval after 5 paragraphs
+            if (count >= 5) {
+                clearInterval(intervalId);
+            }
+        }, 2000);
+
+        // Stop interval if user clicks the button
+        clearButton.addEventListener("click", function() {
+            clearInterval(intervalId);
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- ex2 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Move Box Animation</title>
+    <style>
+        #container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+        }
+        #animate {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: red;
+            left: 0; /* initial position */
+            top: 0;
+        }
+        button {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <p><button onclick="myMove()">Click Me</button></p>
+    <div id="container">
+        <div id="animate"></div>
+    </div>
+
+    <script>
+        function myMove() {
+            const elem = document.getElementById("animate");
+            const container = document.getElementById("container");
+            let pos = 0;
+            const maxRight = container.offsetWidth - elem.offsetWidth;
+
+            const id = setInterval(frame, 1); // move 1px every millisecond
+
+            function frame() {
+                if (pos >= maxRight) {
+                    clearInterval(id);
+                } else {
+                    pos++;
+                    elem.style.left = pos + "px";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
