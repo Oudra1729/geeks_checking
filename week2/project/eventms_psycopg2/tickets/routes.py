@@ -1,4 +1,8 @@
 from helpers import *
+# events/routes.py
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+# أو أي imports آخرين اللي تستعملهم هنا
+events_bp = Blueprint('events', __name__, template_folder='../templates/events')
 
 tickets_bp = Blueprint('tickets', __name__, template_folder='../templates/tickets')
 
