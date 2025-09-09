@@ -1,0 +1,22 @@
+{
+  "queries": [
+    {
+      "id": 1,
+      "question": "hi",
+      "timestamp": "2025-09-09T22:52:52.202459",
+      "ai_response": "Hello! How can I assist you today with your event management needs?",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "question": "give me just date of Design Workshop",
+      "timestamp": "2025-09-09T22:54:43.943407",
+      "ai_response": "Sorry، لا تتوفر لدي حالياً تاريخ محدد لـ \"Design Workshop\". هل يمكنك تزويدي بمزيد من التفاصيل عن الحدث أو مكانه؟",
+      "status": "pending"
+    }
+  ],
+  "responses": {
+    "hi": "Hello! How can I assist you today with your event management needs?",
+    "give me just date of design workshop": "Sorry، لا تتوفر لدي حالياً تاريخ محدد لـ \"Design Workshop\". هل يمكنك تزويدي بمزيد من التفاصيل عن الحدث أو مكانه؟"
+  }
+}
