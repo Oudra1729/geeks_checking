@@ -13,10 +13,18 @@
       "timestamp": "2025-09-09T22:54:43.943407",
       "ai_response": "Sorry، لا تتوفر لدي حالياً تاريخ محدد لـ \"Design Workshop\". هل يمكنك تزويدي بمزيد من التفاصيل عن الحدث أو مكانه؟",
       "status": "pending"
+    },
+    {
+      "id": 3,
+      "question": "what time is it",
+      "timestamp": "2025-09-09T23:15:29.246411",
+      "ai_response": "I don't have access to real-time data or your device's clock. Please check the current time using your phone, computer, or another device. If you need the schedule for a specific event or information about event timings, let me know!",
+      "status": "pending"
     }
   ],
   "responses": {
     "hi": "Hello! How can I assist you today with your event management needs?",
-    "give me just date of design workshop": "Sorry، لا تتوفر لدي حالياً تاريخ محدد لـ \"Design Workshop\". هل يمكنك تزويدي بمزيد من التفاصيل عن الحدث أو مكانه؟"
+    "give me just date of design workshop": "Sorry، لا تتوفر لدي حالياً تاريخ محدد لـ \"Design Workshop\". هل يمكنك تزويدي بمزيد من التفاصيل عن الحدث أو مكانه؟",
+    "what time is it": "I don't have access to real-time data or your device's clock. Please check the current time using your phone, computer, or another device. If you need the schedule for a specific event or information about event timings, let me know!"
   }
 }
