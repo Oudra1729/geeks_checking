@@ -4,7 +4,6 @@ import os, json
 import psycopg2
 from openai import OpenAI, RateLimitError, APIConnectionError, AuthenticationError, APIError
 from datetime import datetime, timedelta
-
 load_dotenv()
 
 # ----------------- OpenAI Setup -----------------
