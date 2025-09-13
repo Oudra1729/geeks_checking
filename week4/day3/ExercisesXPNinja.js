@@ -12,7 +12,7 @@ class Flamingo extends Bird {
 }
 
 const pet = new Flamingo();
-
+1
 //output:
 // I'm pink.🌸
 // I'm a bird.🦢

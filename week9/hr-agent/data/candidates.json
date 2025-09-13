@@ -1,0 +1,134 @@
+[
+  {
+    "firstName": "Amina",
+    "lastName": "El Idrissi",
+    "email": "amina@example.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["React", "JS", "HTML"],
+    "availabilityDate": "2025-10-01",
+    "stage": "SOURCED",
+    "notes": "Portfolio: https://github.com/amina"
+  },
+  {
+    "firstName": "Youssef",
+    "lastName": "Benz",
+    "email": "youssef@example.com",
+    "location": "Casablanca",
+    "experienceYears": 2,
+    "skills": ["React", "JS", "Git"],
+    "availabilityDate": "2025-09-20",
+    "stage": "SCREEN",
+    "notes": "Has experience in frontend projects"
+  },
+  {
+    "firstName": "Sara",
+    "lastName": "El Khatib",
+    "email": "sara@example.com",
+    "location": "Rabat",
+    "experienceYears": 0,
+    "skills": ["HTML", "CSS", "JS"],
+    "availabilityDate": "2025-09-15",
+    "stage": "SOURCED",
+    "notes": "Fresh graduate, eager to learn"
+  },
+  {
+    "firstName": "Hamid",
+    "lastName": "Bouj",
+    "email": "hamid@example.com",
+    "location": "Casablanca",
+    "experienceYears": 3,
+    "skills": ["React", "Node.js", "MongoDB"],
+    "availabilityDate": "2025-10-05",
+    "stage": "INTERVIEW",
+    "notes": "Backend + frontend experience"
+  },
+  {
+    "firstName": "Imane",
+    "lastName": "Rachid",
+    "email": "imane@example.com",
+    "location": "Marrakech",
+    "experienceYears": 1,
+    "skills": ["JS", "HTML", "CSS"],
+    "availabilityDate": "2025-09-30",
+    "stage": "SOURCED",
+    "notes": "Worked on small web projects"
+  },
+  {
+    "firstName": "Mehdi",
+    "lastName": "Haddad",
+    "email": "mehdi@example.com",
+    "location": "Casablanca",
+    "experienceYears": 2,
+    "skills": ["React", "JS", "Git"],
+    "availabilityDate": "2025-09-25",
+    "stage": "SCREEN",
+    "notes": "React enthusiast"
+  },
+  {
+    "firstName": "Lina",
+    "lastName": "Fouad",
+    "email": "lina@example.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["HTML", "CSS", "React"],
+    "availabilityDate": "2025-09-28",
+    "stage": "SOURCED",
+    "notes": "Portfolio: https://lina.dev"
+  },
+  {
+    "firstName": "Khalid",
+    "lastName": "Sami",
+    "email": "khalid@example.com",
+    "location": "Rabat",
+    "experienceYears": 2,
+    "skills": ["JS", "React", "Node.js"],
+    "availabilityDate": "2025-09-18",
+    "stage": "INTERVIEW",
+    "notes": "Fullstack experience"
+  },
+  {
+    "firstName": "Nadia",
+    "lastName": "Othman",
+    "email": "nadia@example.com",
+    "location": "Casablanca",
+    "experienceYears": 0,
+    "skills": ["HTML", "CSS", "JS"],
+    "availabilityDate": "2025-09-12",
+    "stage": "SOURCED",
+    "notes": "Internship ready"
+  },
+  {
+    "firstName": "Rachid",
+    "lastName": "Bensaid",
+    "email": "rachid@example.com",
+    "location": "Marrakech",
+    "experienceYears": 1,
+    "skills": ["React", "Git", "JS"],
+    "availabilityDate": "2025-09-22",
+    "stage": "SCREEN",
+    "notes": "React projects on GitHub"
+  },
+  {
+    "firstName": "Aya",
+    "lastName": "Hamdi",
+    "email": "aya@example.com",
+    "location": "Casablanca",
+    "experienceYears": 2,
+    "skills": ["React", "JS", "CSS"],
+    "availabilityDate": "2025-09-20",
+    "stage": "SOURCED",
+    "notes": "Frontend enthusiast"
+  },
+  {
+    "firstName": "Omar",
+    "lastName": "Fassi",
+    "email": "omar@example.com",
+    "location": "Rabat",
+    "experienceYears": 1,
+    "skills": ["React", "JS", "Node.js"],
+    "availabilityDate": "2025-09-30",
+    "stage": "SOURCED",
+    "notes": "Open source contributor"
+  }
+]

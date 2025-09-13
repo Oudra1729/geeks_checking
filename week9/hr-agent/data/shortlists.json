@@ -1,0 +1,34 @@
+{
+  "FE-Intern-A": [
+    {
+      "firstName": "Amina",
+      "lastName": "El Idrissi",
+      "email": "amina@example.com",
+      "location": "Casablanca",
+      "experienceYears": 1,
+      "skills": [
+        "React",
+        "JS",
+        "HTML"
+      ],
+      "availabilityDate": "2025-10-01",
+      "stage": "SOURCED",
+      "notes": "Portfolio: https://github.com/amina"
+    },
+    {
+      "firstName": "Hamid",
+      "lastName": "Bouj",
+      "email": "hamid@example.com",
+      "location": "Casablanca",
+      "experienceYears": 3,
+      "skills": [
+        "React",
+        "Node.js",
+        "MongoDB"
+      ],
+      "availabilityDate": "2025-10-05",
+      "stage": "INTERVIEW",
+      "notes": "Backend + frontend experience"
+    }
+  ]
+}
