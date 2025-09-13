@@ -400,6 +400,30 @@ def safe_int_list_from_tokens(tokens: List[str]) -> List[int]:
             pass
     return out
 
+def handle_unknown_command(cmd: str) -> str:
+    if not client:
+        # fallback if OpenAI not configured
+        return f"Unrecognized command '{cmd}'. Try: find, save, draft email, show analytics, list shortlists, show shortlist, repreview email, edit subject, edit closing, quit"
+    
+    prompt = (
+        f"You are a helpful CLI assistant. The user typed an unknown command: '{cmd}'. "
+        "Reply in a friendly, concise way telling them the command was not recognized, "
+        "and suggest what commands they can try next."
+    )
+    
+    try:
+        resp = client.chat.completions.create(
+            model=MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            max_tokens=60
+        )
+        return resp.choices[0].message.content.strip()
+    except Exception as e:
+        # fallback on error
+        return f"Unrecognized command '{cmd}'. (AI suggestion failed: {e}) Try: find, save, draft email, show analytics, list shortlists, show shortlist, repreview email, edit subject, edit closing, quit"
+
+
 # ---------- Main interactive loop ----------
 def main():
     print("🤖 HR Agent CLI — simple search / shortlist / email / analytics")
@@ -576,7 +600,7 @@ def main():
             continue
 
         # Unknown command
-        print("Unrecognized command. Try: find, save, draft email, show analytics, list shortlists, show shortlist, repreview email, edit subject, edit closing, quit")
+        print(handle_unknown_command(raw))
 
 if __name__ == "__main__":
     main()
