@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Display Page</title>
+  </head>
+  <body>
+    <h2>Submitted Data</h2>
+
+    <!-- Section to display the sent data -->
+    <section id="output"></section>
+
+    <script>
+      // Function to get URL parameters
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          name: params.get("name") || "",
+          lastname: params.get("lastname") || "",
+        };
+      }
+
+      // Get the parameters
+      const data = getQueryParams();
+
+      // Display the data inside the section
+      const outputSection = document.getElementById("output");
+      outputSection.textContent = `First Name: ${data.name}, Last Name: ${data.lastname}`;
+    </script>
+  </body>
+</html>
