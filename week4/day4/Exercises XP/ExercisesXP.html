@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP & Forms Exercises</title>
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- Exercise 1: HTML Form (GET) -->
+  <!-- ============================= -->
+  <h2>Exercise 1: GET Form</h2>
+  <form action="" method="GET">
+    <label for="name1">Name:</label>
+    <input type="text" id="name1" name="name"><br><br>
+
+    <label for="message1">Message:</label><br>
+    <textarea id="message1" name="message" rows="4" cols="50"></textarea><br><br>
+
+    <input type="submit" value="Send">
+  </form>
+
+  <p>When submitted, the data will appear in the URL query string, e.g. ?name=John&message=Hello</p>
+
+  <hr>
+
+  <!-- ============================= -->
+  <!-- Exercise 2: HTML Form (POST) -->
+  <!-- ============================= -->
+  <h2>Exercise 2: POST Form</h2>
+  <form action="" method="POST">
+    <label for="name2">Name:</label>
+    <input type="text" id="name2" name="name"><br><br>
+
+    <label for="message2">Message:</label><br>
+    <textarea id="message2" name="message" rows="4" cols="50"></textarea><br><br>
+
+    <input type="submit" value="Send">
+  </form>
+
+  <p>When submitted, the data will not appear in the URL. You can see it in the Network tab of your browser’s developer tools.</p>
+
+  <hr>
+
+  <!-- ============================= -->
+  <!-- Exercise 3: JSON Mario -->
+  <!-- ============================= -->
+  <h2>Exercise 3: JSON Mario</h2>
+  <pre id="jsonOutput"></pre>
+
+  <script>
+    const marioGame = {
+      detail: "An amazing game!",
+      characters: {
+        mario: {
+          description: "Small and jumpy. Likes princesses.",
+          height: 10,
+          weight: 3,
+          speed: 12,
+        },
+        bowser: {
+          description: "Big and green, Hates princesses.",
+          height: 16,
+          weight: 6,
+          speed: 4,
+        },
+        princessPeach: {
+          description: "Beautiful princess.",
+          height: 12,
+          weight: 2,
+          speed: 2,
+        }
+      }
+    };
+
+    // Convert JS object to JSON string
+    const marioJSON = JSON.stringify(marioGame);
+    console.log(marioJSON);
+    // Nested objects are converted into nested JSON objects as well
+
+    // Pretty print JSON
+    const marioPrettyJSON = JSON.stringify(marioGame, null, 2);
+    document.getElementById('jsonOutput').textContent = marioPrettyJSON;
+
+    // Set a breakpoint here to inspect in debugger
+    debugger;
+  </script>
+
+</body>
+</html>
