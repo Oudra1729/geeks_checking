@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Quote Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #c0b3aa; padding: 30px; }
+    #quote-box { background: #e0dad7; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; }
+    #quote-box p { font-size: 18px; }
+    button { margin: 5px; padding: 10px; cursor: pointer; }
+    input { margin: 5px; padding: 5px; }
+  </style>
+</head>
+<body>
+
+  <div id="quote-box">
+    <button id="generate">Generate Quote</button>
+    <p id="quote-text"></p>
+    <p id="quote-author"></p>
+
+    <div>
+      <button id="char-space">Chars with spaces</button>
+      <button id="char-no-space">Chars no spaces</button>
+      <button id="word-count">Word count</button>
+      <button id="like-btn">Like ❤️</button>
+      <p id="extra-info"></p>
+    </div>
+
+    <hr>
+    <h3>Add a Quote</h3>
+    <input type="text" id="new-quote" placeholder="Quote">
+    <input type="text" id="new-author" placeholder="Author">
+    <button id="add-quote">Add Quote</button>
+
+    <hr>
+    <h3>Filter by Author</h3>
+    <input type="text" id="filter-author" placeholder="Author name">
+    <button id="filter-btn">Filter</button>
+    <div>
+      <button id="prev-quote">Previous</button>
+      <button id="next-quote">Next</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
