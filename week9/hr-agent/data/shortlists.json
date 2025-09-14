@@ -30,5 +30,6 @@
       "stage": "INTERVIEW",
       "notes": "Backend + frontend experience"
     }
-  ]
+  ],
+  "default": []
 }
