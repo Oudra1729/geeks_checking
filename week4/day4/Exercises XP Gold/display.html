@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Data</title>
+</head>
+<body>
+  <h2>Submitted Data</h2>
+  <section id="output">
+    <!-- Data will appear here -->
+  </section>
+
+  <script>
+    const output = document.getElementById('output');
+
+    // Get data from localStorage
+    const name = localStorage.getItem('name');
+    const lastname = localStorage.getItem('lastname');
+
+    // Display data
+    output.innerHTML = `<p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Lastname:</strong> ${lastname}</p>`;
+  </script>
+</body>
+</html>
