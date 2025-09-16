@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Robo-Friends Search</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+        url("circuit-pattern.png");
+      background-size: cover;
+      background-attachment: fixed;
+      color: #fff;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #4CAF50;
+      padding: 15px 30px;
+      border-radius: 0 0 12px 12px;
+    }
+    .navbar h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+      font-family: "Orbitron", sans-serif;
+      color: #000;
+      letter-spacing: 2px;
+    }
+    .navbar input {
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      width: 280px;
+    }
+
+    /* --- Cards --- */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background: lab(57.12% 5.18 -57.1); /* transparent for blur */
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+
+      /* Blur effect */
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      background-clip: padding-box;
+
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.9);
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 180px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin: 10px 0 5px;
+      color: #ffcc70;
+    }
+    .card p {
+      margin: 5px 0;
+      color: #ddd;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .card-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .navbar input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1>ROBOFRIENDS</h1>
+    <input type="text" id="search" placeholder="Search Robots by name...">
+  </nav>
+
+  <!-- Cards -->
+  <div class="card-container" id="cardContainer"></div>
+
+  <script>
+    const robots = [
+      { id: 1, name: 'Leanne Graham', username: 'Bret', email: 'Sincere@april.biz', image: 'https://robohash.org/1?200x200' },
+      { id: 2, name: 'Ervin Howell', username: 'Antonette', email: 'Shanna@melissa.tv', image: 'https://robohash.org/2?200x200' },
+      { id: 3, name: 'Clementine Bauch', username: 'Samantha', email: 'Nathan@yesenia.net', image: 'https://robohash.org/3?200x200' },
+      { id: 4, name: 'Patricia Lebsack', username: 'Karianne', email: 'Julianne.OConner@kory.org', image: 'https://robohash.org/4?200x200' },
+      { id: 5, name: 'Chelsey Dietrich', username: 'Kamren', email: 'Lucio_Hettinger@annie.ca', image: 'https://robohash.org/5?200x200' },
+      { id: 6, name: 'Mrs. Dennis Schulist', username: 'Leopoldo_Corkery', email: 'Karley_Dach@jasper.info', image: 'https://robohash.org/6?200x200' },
+      { id: 7, name: 'Kurtis Weissnat', username: 'Elwyn.Skiles', email: 'Telly.Hoeger@billy.biz', image: 'https://robohash.org/7?200x200' },
+      { id: 8, name: 'Nicholas Runolfsdottir V', username: 'Maxime_Nienow', email: 'Sherwood@rosamond.me', image: 'https://robohash.org/8?200x200' },
+      { id: 9, name: 'Glenna Reichert', username: 'Delphine', email: 'Chaim_McDermott@dana.io', image: 'https://robohash.org/9?200x200' },
+      { id: 10, name: 'Clementina DuBuque', username: 'Moriah.Stanton', email: 'Rey.Padberg@karina.biz', image: 'https://robohash.org/10?200x200' }
+    ];
+
+    function generateCards(data) {
+      const container = document.getElementById('cardContainer');
+      container.innerHTML = "";
+      data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${item.image}" alt="robot">
+          <h3>${item.name}</h3>
+          <p>${item.username}</p>
+          <p>${item.email}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    generateCards(robots);
+
+    document.getElementById('search').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = robots.filter(r => r.name.toLowerCase().includes(query));
+      generateCards(filtered);
+    });
+  </script>
+</body>
+</html>
