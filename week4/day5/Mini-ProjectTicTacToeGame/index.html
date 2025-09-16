@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Tic Tac Toe</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4facfe 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #fff, #a8d8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.game-board {
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+.cell {
+    width: 90px;
+    height: 90px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cell:active {
+    transform: scale(0.95);
+}
+
+.cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.cell:hover::before {
+    left: 100%;
+}
+
+.x-mark {
+    color: #ff6b6b;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: markAppear 0.3s ease-in-out;
+}
+
+.o-mark {
+    color: #4ecdc4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: markAppear 0.3s ease-in-out;
+}
+
+@keyframes markAppear {
+    0% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.button-container {
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.game-btn {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.play-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.play-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.restart-btn {
+    background: linear-gradient(45deg, #f093fb, #f5576c);
+    color: white;
+    box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 87, 108, 0.6);
+}
+
+.game-btn:active {
+    transform: translateY(0);
+}
+
+#status {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    animation: statusPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes statusPulse {
+    0% {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    100% {
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
+.winner {
+    background: linear-gradient(45deg, #00c851, #007e33) !important;
+    animation: celebrate 0.5s ease-in-out;
+}
+
+.loser {
+    background: linear-gradient(45deg, #ff4444, #cc0000) !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+.tie {
+    background: linear-gradient(45deg, #ffbb33, #ff8800) !important;
+}
+
+@keyframes celebrate {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .cell {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .game-btn {
+        width: 200px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="game-container">
+    <h1>Tic Tac Toe</h1>
+    
+    <table class="game-board">
+        <tr>
+            <td class="cell" id="0"></td>
+            <td class="cell" id="1"></td>
+            <td class="cell" id="2"></td>
+        </tr>
+        <tr>
+            <td class="cell" id="3"></td>
+            <td class="cell" id="4"></td>
+            <td class="cell" id="5"></td>
+        </tr>
+        <tr>
+            <td class="cell" id="6"></td>
+            <td class="cell" id="7"></td>
+            <td class="cell" id="8"></td>
+        </tr>
+    </table>
+
+    <div class="button-container">
+        <button class="game-btn play-btn" id="xbtn">Play as X</button>
+        <button class="game-btn play-btn" id="obtn">Play as O</button>
+        <button class="game-btn restart-btn" id="restart">Restart Game</button>
+    </div>
+
+    <div id="status">Choose X or O to start playing!</div>
+</div>
+
+<script>
+let humanPlayer, pcPlayer;
+let board = Array(9).fill(null);
+let gameOver = false;
+const winCombos = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[6,4,2]
+];
+const cells = document.querySelectorAll(".cell");
+const statusDiv = document.getElementById("status");
+
+document.getElementById("xbtn").addEventListener("click", () => {
+    humanPlayer = "X";
+    pcPlayer = "O";
+    statusDiv.textContent = "You are X. Make your move!";
+    statusDiv.className = "";
+    restartGame();
+});
+
+document.getElementById("obtn").addEventListener("click", () => {
+    humanPlayer = "O";
+    pcPlayer = "X";
+    statusDiv.textContent = "You are O. Computer goes first!";
+    statusDiv.className = "";
+    restartGame();
+    setTimeout(computerMove, 500);
+});
+
+document.getElementById("restart").addEventListener("click", restartGame);
+
+cells.forEach(cell => {
+    cell.addEventListener("click", () => {
+        if (!gameOver && humanPlayer && !cell.textContent) {
+            let id = parseInt(cell.id);
+            board[id] = humanPlayer;
+            cell.textContent = humanPlayer;
+            cell.classList.add(humanPlayer === "X" ? "x-mark" : "o-mark");
+            
+            if (checkWinner(board, humanPlayer)) {
+                endGame("🎉 You win! 🎉", "winner");
+                return;
+            }
+            if (board.every(cell => cell)) {
+                endGame("🤝 It's a tie! 🤝", "tie");
+                return;
+            }
+            
+            statusDiv.textContent = "Computer is thinking...";
+            setTimeout(computerMove, 300);
+        }
+    });
+});
+
+function computerMove(){
+    if (gameOver) return;
+    let emptySquares = board.map((val, idx) => val ? null : idx).filter(val => val !== null);
+    if (emptySquares.length === 0) return;
+
+    let randomIndex = emptySquares[Math.floor(Math.random() * emptySquares.length)];
+    board[randomIndex] = pcPlayer;
+    const cell = document.getElementById(randomIndex);
+    cell.textContent = pcPlayer;
+    cell.classList.add(pcPlayer === "X" ? "x-mark" : "o-mark");
+
+    if (checkWinner(board, pcPlayer)) {
+        endGame("🤖 Computer wins! 🤖", "loser");
+        return;
+    }
+    if (board.every(cell => cell)) {
+        endGame("🤝 It's a tie! 🤝", "tie");
+        return;
+    }
+    
+    statusDiv.textContent = "Your turn!";
+}
+
+function checkWinner(board, player) {
+    return winCombos.some(combo => combo.every(index => board[index] === player));
+}
+
+function endGame(message, statusClass) {
+    statusDiv.textContent = message;
+    statusDiv.className = statusClass;
+    gameOver = true;
+}
+
+function restartGame() {
+    board = Array(9).fill(null);
+    cells.forEach(cell => {
+        cell.textContent = "";
+        cell.classList.remove("x-mark", "o-mark");
+    });
+    if (!humanPlayer) {
+        statusDiv.textContent = "Choose X or O to start playing!";
+        statusDiv.className = "";
+    }
+    gameOver = false;
+}
+</script>
+</body>
+</html>
