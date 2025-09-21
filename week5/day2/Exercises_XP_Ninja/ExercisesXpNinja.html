@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercises XP Ninja</title>
+</head>
+<body>
+
+<h1>Giphy API #3</h1>
+
+<form id="giphyForm">
+    <input type="text" placeholder="Search Giphy">
+    <button type="submit">Search</button>
+</form>
+<button id="deleteAll">Delete All GIFs</button>
+
+<script>
+// -------- Exercise 1 : Giphy API #3 --------
+const form = document.getElementById("giphyForm");
+const deleteAllBtn = document.getElementById("deleteAll");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const input = form.querySelector("input");
+    const searchTerm = input.value;
+
+    try {
+        const response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${searchTerm}&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+
+        // append all GIFs returned by API
+        data.data.forEach(gifData => {
+            const img = document.createElement("img");
+            img.src = gifData.images.original.url;
+            img.style.width = "200px";
+            document.body.appendChild(img);
+        });
+    } catch (error) {
+        console.error("Error fetching data from Giphy API:", error);
+    }
+});
+
+deleteAllBtn.addEventListener("click", () => {
+    document.querySelectorAll("img").forEach(img => img.remove());
+});
+
+// -------- Exercise 2 : Analyze #4 --------
+let resolveAfter2Seconds = function () {
+    console.log("starting slow promise");
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve("slow");
+            console.log("slow promise is done");
+        }, 2000);
+    });
+};
+
+let resolveAfter1Second = function () {
+    console.log("starting fast promise");
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve("fast");
+            console.log("fast promise is done");
+        }, 1000);
+    });
+};
+
+let concurrentPromise = function () {
+    console.log('==CONCURRENT START with Promise.all==');
+    return Promise.all([resolveAfter2Seconds(), resolveAfter1Second()]).then(messages => {
+        console.log(messages[0]); // slow
+        console.log(messages[1]); // fast
+    });
+}
+setTimeout(concurrentPromise, 1000);
+// Outcome: for 1s -> "==CONCURRENT START with Promise.all==", "starting slow promise", "starting fast promise"
+//for 1s -> "fast promise is done"
+//for 2s -> "slow promise is done", and "slow", "fast"
+// -------- Exercise 3 : Analyze #5 --------
+let parallel = async function () {
+    console.log('==PARALLEL with await Promise.all==');
+    await Promise.all([
+        (async () => console.log(await resolveAfter2Seconds()))(),
+        (async () => console.log(await resolveAfter1Second()))()
+    ]);
+}
+setTimeout(parallel, 5000);
+// Outcome: for 5s -> "==PARALLEL with await Promise.all==", "starting slow promise", "starting fast promise"
+//for 1s -> "fast promise is done"
+//for 2s -> "slow promise is done", and "slow", "fast"
+
+// -------- Exercise 4 : Analyze #6 --------
+let parallelPromise = function () {
+    console.log('==PARALLEL with Promise.then==');
+    resolveAfter2Seconds().then(msg => console.log(msg));
+    resolveAfter1Second().then(msg => console.log(msg));
+}
+setTimeout(parallelPromise, 13000);
+// Outcome: for 13s -> "==PARALLEL with Promise.then==", "starting slow promise", "starting fast promise"
+//for 1s -> "fast promise is done", "fast"
+//for 2s -> "slow promise is done", "slow"
+
+</script>
+
+</body>
+</html>

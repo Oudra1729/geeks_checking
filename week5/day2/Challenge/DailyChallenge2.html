@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Times</title>
+</head>
+<body>
+    <h1>Find Sunrise Time for Two Cities</h1>
+
+    <form id="sunForm">
+        <h3>City 1</h3>
+        <input type="text" id="lat1" placeholder="48.864716" required>
+        <input type="text" id="lng1" placeholder="2.349014" required>
+
+        <h3>City 2</h3>
+        <input type="text" id="lat2" placeholder="40.730610" required>
+        <input type="text" id="lng2" placeholder="-73.935242" required>
+
+        <button type="submit">Get Sunrise Times</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        const form = document.getElementById('sunForm');
+        const resultsDiv = document.getElementById('results');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const [lat1, lng1, lat2, lng2] = [
+                document.getElementById('lat1').value,
+                document.getElementById('lng1').value,
+                document.getElementById('lat2').value,
+                document.getElementById('lng2').value
+            ];
+
+            const urls = [
+                `https://api.sunrise-sunset.org/json?lat=${lat1}&lng=${lng1}&formatted=0`,
+                `https://api.sunrise-sunset.org/json?lat=${lat2}&lng=${lng2}&formatted=0`
+            ];
+
+            try {
+                const responses = await Promise.all(urls.map(url => fetch(url)));
+
+                if (responses.some(res => !res.ok)) throw new Error("HTTP error!");
+
+                const [data1, data2] = await Promise.all(responses.map(res => res.json()));
+
+                resultsDiv.innerHTML = `
+                    <p>City 1 Sunrise: ${new Date(data1.results.sunrise).toLocaleTimeString()}</p>
+                    <p>City 2 Sunrise: ${new Date(data2.results.sunrise).toLocaleTimeString()}</p>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `<p style="color:red">Error fetching data: ${error}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

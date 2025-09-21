@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #1f4037, #99f2c8);
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+  }
+  h1 { margin-bottom: 20px; }
+  select, input { padding: 10px; margin: 5px; border-radius: 5px; border: 1px solid #ccc; }
+  button {
+    padding: 10px 15px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #1f4037;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  button:hover { background: #99f2c8; color: #1f4037; }
+  #result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+</style>
+</head>
+<body>
+
+<h1>💱 Currency Converter</h1>
+
+<div>
+  <label>From:</label>
+  <!-- <select id="fromCurrency"></select> -->
+
+  <label>To:</label>
+  <!-- <select id="toCurrency"></select> -->
+</div>
+
+<div>
+  <label>Amount:</label>
+  <!-- <input type="number" id="amount" value="1" min="0"> -->
+</div>
+
+<div>
+  <button id="convert">Convert</button>
+  <button id="switch">Switch</button>
+</div>
+
+<p id="result"></p>
+
+<script>
+const fromSelect = document.getElementById('fromCurrency');
+const toSelect = document.getElementById('toCurrency');
+const amountInput = document.getElementById('amount');
+const convertBtn = document.getElementById('convert');
+const switchBtn = document.getElementById('switch');
+const resultEl = document.getElementById('result');
+
+
+const API_KEY = 'a8b81b7144850b36fa80d1e5';
+const API_URL = 'https://v6.exchangerate-api.com/v6/';
+
+async function fetchCurrencies() {
+  try {
+    const response = await fetch(`${API_URL}${API_KEY}/codes`);
+    const data = await response.json();
+    data.supported_codes.forEach(code => {
+      const optionFrom = new Option(`${code[0]} - ${code[1]}`, code[0]);
+      const optionTo = new Option(`${code[0]} - ${code[1]}`, code[0]);
+      fromSelect.add(optionFrom);
+      toSelect.add(optionTo);
+    });
+    fromSelect.value = 'USD';
+    toSelect.value = 'EUR';
+  } catch (error) {
+    resultEl.textContent = '❌ Error loading currencies';
+    console.error(error);
+  }
+}
+
+
+async function convertCurrency() {
+  const from = fromSelect.value;
+  const to = toSelect.value;
+  const amount = parseFloat(amountInput.value);
+
+  if (isNaN(amount) || amount <= 0) {
+    resultEl.textContent = '⚠️ Please enter a valid number';
+    return;
+  }
+
+  try {
+    resultEl.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Converting...`;
+    const response = await fetch(`${API_URL}${API_KEY}/pair/${from}/${to}/${amount}`);
+    const data = await response.json();
+    if (data.result === 'success') {
+      resultEl.textContent = `💰 ${amount} ${from} = ${data.conversion_result.toFixed(2)} ${to}`;
+    } else {
+      resultEl.textContent = '❌ Conversion failed';
+    }
+  } catch (error) {
+    resultEl.textContent = '❌ Error fetching conversion';
+    console.error(error);
+  }
+}
+
+
+switchBtn.addEventListener('click', () => {
+  const temp = fromSelect.value;
+  fromSelect.value = toSelect.value;
+  toSelect.value = temp;
+  convertCurrency();
+});
+
+convertBtn.addEventListener('click', convertCurrency);
+
+
+fetchCurrencies();
+</script>
+
+</body>
+</html>
