@@ -1,0 +1,12 @@
+#quiz-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    }
+#quiz-container h2 {
+    text-align: center;
+    }
+    
