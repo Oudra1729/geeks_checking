@@ -1,0 +1,40 @@
+### create task
+POST http://localhost:9090/api/tasks
+Content-Type: application/json
+
+{
+    "title": "Task 1",
+    "description": "Task 1 description",
+    "userId": "68e69a8dff713cacf289ac92"
+}
+
+### test route
+GET http://localhost:9090/
+
+### get all tasks
+GET http://localhost:9090/api/tasks
+
+### register
+POST http://localhost:9090/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "ayoub el hanafi",
+    "email": "ayoub@test.com",
+    "password": "ayoub",
+    "role": "admin"
+}
+
+### login
+POST http://localhost:9090/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "ayoub@test.com",
+    "password": "ayoub"
+}
+
+
+### me
+GET http://localhost:9090/api/auth/me
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZTY5YThkZmY3MTNjYWNmMjg5YWM5MiIsImVtYWlsIjoibW91YWRAdGVzdC5jb20iLCJpYXQiOjE3NTk5NDM2MzN9.2090LQ89Ie2PkkKG-vua1HZBhIZ7GOF0hUXH1nZEtKw
