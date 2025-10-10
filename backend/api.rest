@@ -1,5 +1,5 @@
-### create task
-POST http://localhost:9090/api/tasks
+#### create task
+POST http://localhost:4000/api/tasks
 Content-Type: application/json
 
 {
@@ -9,24 +9,24 @@ Content-Type: application/json
 }
 
 ### test route
-GET http://localhost:9090/
+GET http://localhost:4000/
 
 ### get all tasks
-GET http://localhost:9090/api/tasks
+GET http://localhost:4000/api/tasks
 
 ### register
-POST http://localhost:9090/api/auth/register
+POST http://localhost:4000/api/auth/register
 Content-Type: application/json
 
 {
-    "username": "ayoub el hanafi",
-    "email": "ayoub@test.com",
+    "username": "aanafi",
+    "email": "ayost.com",
     "password": "ayoub",
     "role": "admin"
 }
 
 ### login
-POST http://localhost:9090/api/auth/login
+POST http://localhost:4000/api/auth/login
 Content-Type: application/json
 
 {
@@ -36,5 +36,17 @@ Content-Type: application/json
 
 
 ### me
-GET http://localhost:9090/api/auth/me
+GET http://localhost:4000/api/auth/me
 Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZTY5YThkZmY3MTNjYWNmMjg5YWM5MiIsImVtYWlsIjoibW91YWRAdGVzdC5jb20iLCJpYXQiOjE3NTk5NDM2MzN9.2090LQ89Ie2PkkKG-vua1HZBhIZ7GOF0hUXH1nZEtKw
+
+
+## update task
+PUT http://localhost:4000/api/tasks/68e7d74ef134be662c297fc0
+Content-Type: application/json
+
+{
+    "title": "Updated Task",
+    "description": "Updated description",
+    "isCompleted": true,
+    "status": "done"
+}
