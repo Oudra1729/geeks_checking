@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@craco/craco": "^7.1.0",
+    "assert": "^2.1.0",
+    "axios": "^1.12.2",
+    "buffer": "^6.0.3",
+    "dotenv": "^17.2.3",
+    "process": "^0.11.10",
+    "react-router-dom": "^7.9.4",
+    "stream": "^0.0.3",
+    "url": "^0.11.4",
+    "util": "^0.12.5"
+  }
+}
