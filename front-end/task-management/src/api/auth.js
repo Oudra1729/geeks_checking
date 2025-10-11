@@ -1,6 +1,7 @@
 import axios from "axios";
-// Set the base URL of your backend API
-const API_URL = "http://localhost:4000/api"; // change if your backend URL is different
+
+
+const API_URL = process.env.REACT_APP_API_URL || "";
 
 export const registerUser = async (username, email, password, role = "user") => {
   const { data } = await axios.post(`${API_URL}/register`, {
